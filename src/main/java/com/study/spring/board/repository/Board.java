@@ -1,12 +1,15 @@
 package com.study.spring.board.repository;
 
-import jdk.nashorn.internal.objects.annotations.Getter;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
+@Getter
+@Setter
 public class Board {
 
     @Id
@@ -14,12 +17,4 @@ public class Board {
 
     @Column
     private String title;
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
 }
