@@ -11,9 +11,13 @@ import java.util.List;
 public class BoardService {
 
     @Autowired
-    private BoardRepository repository;
+    private BoardRepository boardRepository;
 
     public List<Board> getBoardList() {
-        return repository.findAll();
+        return boardRepository.findAll();
+    }
+
+    public Board getBoardContent(Long boardId) {
+        return boardRepository.getOne(boardId);
     }
 }
