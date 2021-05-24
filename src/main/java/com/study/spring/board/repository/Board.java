@@ -5,19 +5,19 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @NoArgsConstructor
-public class Board {
+@Table
+public class Board implements Serializable {
 
     @Id
-    @GeneratedValue
+    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
@@ -26,11 +26,15 @@ public class Board {
     @Column
     private String contents;
 
-    @Column
+    @Column(name = "name")
     private String writer;
 
     @Column
     private LocalDateTime writeDate;
+
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "writer", updatable = false, insertable = false)
+//    private User user;
 
     @Builder
     public Board(String title, String contents, String writer) {

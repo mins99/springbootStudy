@@ -13,4 +13,6 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
     @Query(nativeQuery = true , value = "DELETE FROM board b WHERE b.id = :rId")
     void deleteBoard(@Param("rId") Long rId);
 
+    Board findByWriter(String name);
+
 }

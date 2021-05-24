@@ -4,6 +4,9 @@ import com.study.spring.board.dto.RequestBoard;
 import com.study.spring.board.repository.Board;
 import com.study.spring.board.repository.BoardRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +21,15 @@ public class BoardService {
     @Transactional(readOnly = true)
     public List<Board> getBoardList() {
         return boardRepository.findAll();
+    }
+
+    public Page<Board> findBoardList(Pageable pageable) {
+        pageable = PageRequest.of(pageable.getPageNumber() <= 0 ? 0 : pageable.getPageNumber() - 1, pageable.getPageNumber());
+        return boardRepository.findAll(pageable);
+    }
+
+    public Board findBoardByIdx(Long idx) {
+        return boardRepository.findById(idx).orElseThrow(() -> new IllegalArgumentException("해당 게시물이 없습니다."));
     }
 
     @Transactional(readOnly = true)
