@@ -1,7 +1,7 @@
 package com.study.spring.board.service;
 
 import com.study.spring.board.dto.RequestBoard;
-import com.study.spring.board.repository.Board;
+import com.study.spring.board.domain.Board;
 import com.study.spring.board.repository.BoardRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;

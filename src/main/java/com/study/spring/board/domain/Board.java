@@ -1,4 +1,4 @@
-package com.study.spring.board.repository;
+package com.study.spring.board.domain;
 
 import com.study.spring.board.dto.RequestBoard;
 import lombok.Builder;

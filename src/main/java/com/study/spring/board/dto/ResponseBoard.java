@@ -1,6 +1,6 @@
 package com.study.spring.board.dto;
 
-import com.study.spring.board.repository.Board;
+import com.study.spring.board.domain.Board;
 import lombok.Builder;
 import lombok.Getter;
 

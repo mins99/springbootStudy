@@ -1,5 +1,6 @@
 package com.study.spring.board.repository;
 
+import com.study.spring.board.domain.Board;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

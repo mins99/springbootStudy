@@ -2,10 +2,8 @@ package com.study.spring.board.controller;
 
 import com.study.spring.board.dto.RequestBoard;
 import com.study.spring.board.dto.ResponseBoard;
-import com.study.spring.board.repository.Board;
 import com.study.spring.board.service.BoardService;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;

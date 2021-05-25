@@ -1,5 +1,6 @@
-package com.study.spring.board.repository;
+package com.study.spring.board.domain;
 
+import com.study.spring.board.enums.SocialType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,9 +25,22 @@ public class User implements Serializable {
     @Column
     private String password;
 
+    @Column
+    private String email;
+
+    @Column
+    private String principal;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private SocialType socialType;
+
     @Builder
-    public User(String name, String password) {
+    public User(String name, String password, String email, String principal, SocialType socialType) {
         this.name = name;
         this.password = password;
+        this.email = email;
+        this.principal = principal;
+        this.socialType = socialType;
     }
 }
