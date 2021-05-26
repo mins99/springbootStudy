@@ -17,7 +17,7 @@ public class ResponseBoard {
 
     private final String contents;
 
-    private final LocalDateTime writeDate;
+    private final String writeDate;
 
     @Builder
     public ResponseBoard(Board board) {
@@ -25,7 +25,7 @@ public class ResponseBoard {
         this.title = board.getTitle();
         this.writer = board.getWriter();
         this.contents = board.getContents();
-        this.writeDate = board.getWriteDate();
+        this.writeDate = board.getWriteDate().toString();
     }
 
 //    public static ResponseBoard success(Board board) {

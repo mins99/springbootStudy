@@ -15,10 +15,10 @@ public class LoginController {
 
     @GetMapping("/loginSuccess")
     public String loginComplete(@SocialUser User user) {
-        return "redirect:/boardView";
+        return "redirect:/board/list";
     }
 
     @GetMapping("/loginFailure")
-    public String loginFailure() { return "실패 ㅠㅠ"; }
+    public String loginFailure() { return "login"; }
 
 }

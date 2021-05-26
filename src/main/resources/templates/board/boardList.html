@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<head xmlns:th="http://www.w3.org/1999/xhtml">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>thymeleaf 예제</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<!-- Bootstrap core JavaScript -->
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+
+});
+
+    $(function() {
+
+
+    });
+
+function window_onload() {
+    $.ajax({
+        dataType : "json",
+        url : "/list",
+        method : "GET",
+        success : function(result){
+            var html = "";
+            $.each(result, function(key, value){
+                html += "<tr><th>" + value.boardId + "</th>";
+                html += "<td>" + value.title + "</td>";
+                html += "<td>" + value.writer + "</td>";
+                html += "<td>" + value.writeDate.substring(0,10) + "</td>";
+                html += "</tr>";
+            });
+            $("#tbody").html(html);
+        },
+        error : function(){ alert("로딩실패!"); }
+    });
+}
+</script>
+<body onload="window_onload();">
+<!--header-->
+<div th:fragment="header">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/" class="navbar-brand" style="text-decoration:none;">
+                    <img th:src="@{/images/spring_boot_gray.png}" class="img-rounded" style="display:inline-block;height:100%;margin-right:5px" />
+                    <span style="vertical-align:middle;">SpringBoot Community Web</span>
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/logout">LOGOUT</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+<!--/header-->
+<!-- Page Content -->
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th style="width:10%" scope="col">NO</th>
+            <th style="width:30%" scope="col">Title</th>
+            <th style="width:30%" scope="col">Writer</th>
+            <th style="width:30%" scope="col">Date</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+
+        </tbody>
+    </table>
+</div>
+<!-- Pagination -->
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+        </li>
+    </ul>
+</nav>
+</body>
+</html>
