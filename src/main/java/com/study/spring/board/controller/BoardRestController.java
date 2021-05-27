@@ -1,5 +1,6 @@
 package com.study.spring.board.controller;
 
+import com.study.spring.board.domain.User;
 import com.study.spring.board.dto.RequestBoard;
 import com.study.spring.board.dto.ResponseBoard;
 import com.study.spring.board.service.BoardService;
@@ -7,7 +8,11 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -39,8 +44,12 @@ public class BoardRestController {
         return ResponseBoard.builder().board(boardService.findBoardByIdx(idx)).build();
     }
 
-    @PostMapping("/create")
+    @PostMapping("/boards")
     public void createBoardContent(@RequestBody RequestBoard board) {
+        HttpSession session = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest().getSession();
+        //HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        board.setWriter(user.getName());
         boardService.createBoardContent(board);
     }
 
